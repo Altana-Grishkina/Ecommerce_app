@@ -12,13 +12,13 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
   currentCategoryId: number = 1;
-  previousCategoryId: number = 1;
+  previousCategoryId: number = 5;
   currentCategoryName: string = "";
   searchMode: boolean = false;
 
   // new properties for pagination
   thePageNumber: number = 1;
-  thePageSize: number = 10;
+  thePageSize: number = 5;
   theTotalElements: number = 0;
   
 
