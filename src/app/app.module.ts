@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductCategoryMenuComponent } from './component/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './component/search/search.component';
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
+// import { RouterOutlet, RouterLink } from '@angular/router';
 
 const routes: Routes = [
   {path: 'products/:id', component: ProductDetailsComponent},
@@ -33,9 +34,15 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule 
+    // RouterOutlet, 
+    // RouterLink
   ],
+  exports: [RouterModule],
   providers: [ProductService],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
