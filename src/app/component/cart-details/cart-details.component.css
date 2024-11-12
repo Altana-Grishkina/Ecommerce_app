@@ -1,6 +1,6 @@
 .table-bordered td,
 .table-bordered th {
-    border: 1px solid #dee2e6;   <-------- This line goes in the next rule
+    border: 1px solid #dee2e6;   
 }
  
 table.table.table-bordered th {
@@ -8,5 +8,5 @@ table.table.table-bordered th {
     color: #fff;
     font-size: 14px;
     padding: 7px;
-    border: 1px solid #dee2e6; <---------------- Here
+    border: 1px solid #dee2e6;
 }
