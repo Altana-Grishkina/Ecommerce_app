@@ -1,0 +1,12 @@
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #dee2e6;   <-------- This line goes in the next rule
+}
+ 
+table.table.table-bordered th {
+    background : #0da8e4;
+    color: #fff;
+    font-size: 14px;
+    padding: 7px;
+    border: 1px solid #dee2e6; <---------------- Here
+}
