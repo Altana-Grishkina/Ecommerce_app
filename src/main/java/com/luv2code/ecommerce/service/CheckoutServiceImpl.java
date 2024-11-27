@@ -1,6 +1,7 @@
 package com.luv2code.ecommerce.service;
 
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,6 +61,7 @@ public class CheckoutServiceImpl implements CheckoutService {
                 // generate a random UUID number (UUID version-4)
                 // For details see: https://en.wikipedia.org/wiki/Universally_unique_identifier
                 //
+                
                 return UUID.randomUUID().toString();
             }
 
