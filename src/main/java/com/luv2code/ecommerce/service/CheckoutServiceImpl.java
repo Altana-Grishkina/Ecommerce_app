@@ -1,12 +1,16 @@
 package com.luv2code.ecommerce.service;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luv2code.ecommerce.dao.CustomerRepository;
 import com.luv2code.ecommerce.dto.Purchase;
 import com.luv2code.ecommerce.dto.PurchaseResponse;
+import com.luv2code.ecommerce.entity.Customer;
 import com.luv2code.ecommerce.entity.Order;
+import com.luv2code.ecommerce.entity.OrderItem;
 
 import jakarta.transaction.Transactional;
 
@@ -32,16 +36,23 @@ public class CheckoutServiceImpl implements CheckoutService {
                 order.setOrderTrackingNumber(orderTrackingNumber);
         
                 // populate order with orderItems
+                Set<OrderItem> orderItems = purchase.getOrderItem();
+                orderItems.forEach(item -> order.add(item));
         
                 // populate order with billingAddress and shippingAddress
+                order.setBillingAddress(purchase.getBillingAddress());
+                order.setShippingAddress(purchase.getShippingAddress());
         
                 // populate customer with order
-        
+                Customer customer = purchase.getCustomer();
+                customer.add(order);
+
                 // save to the database
-        
+                customerRepository.save(customer);
+
                 //return a response
         
-                return null;
+                return new PurchaseResponse(orderTrackingNumber);
             }
         
             private String generateOrderTrackingNumber() {
@@ -49,6 +60,7 @@ public class CheckoutServiceImpl implements CheckoutService {
                 // generate a random UUID number (UUID version-4)
                 // For details see: https://en.wikipedia.org/wiki/Universally_unique_identifier
                 //
+                return UUID.randomUUID().toString();
             }
 
 }
