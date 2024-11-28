@@ -5,6 +5,10 @@ import { Country } from '../../common/country';
 import { State } from '../../common/state';
 import { ShopValidators } from '../../validators/shop-validators';
 import { CartService } from '../../services/cart.service';
+import { CheckoutService } from '../../services/checkout.service';
+import { Router } from '@angular/router';
+import { Order } from '../../common/order';
+import { OrderItem } from '../../common/order-item';
 
 @Component({
   selector: 'app-checkout',
@@ -27,7 +31,9 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private shopFormService: ShopFormService,
-              private cartService: CartService
+              private cartService: CartService,
+              private checkoutService: CheckoutService,
+              private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -187,13 +193,45 @@ export class CheckoutComponent implements OnInit {
 
     if(this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
+      return;
     }
 
-    console.log(this.checkoutFormGroup.get('customer').value);
-    console.log("The email address is " + this.checkoutFormGroup.get('customer').value.email);
+    // set up order
+    let order = new Order();
+    order.totalPrice = this.totalPrice;
+    order.totalQuantity = this.totalQuantity;
 
-    console.log("The shipping address country is " + this.checkoutFormGroup.get('shippingAddress').value.country.name);
-    console.log("The shipping address state is " + this.checkoutFormGroup.get('shippingAddress').value.state.name);
+    // get cart items
+    const cartItems = this.cartService.cartItems;
+
+    // create orderItems from cartItems
+    /*
+    // - long way
+    let orderItems: OrderItem[] = [];
+    for(let i = 0; cartItems.length; i++){
+      orderItems[i] = new OrderItem(cartItems[i]);
+    }
+    */
+    // - short way of doing the same thing
+    let orderItems: OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
+
+    //set up purchase
+
+    //populate purchase - customer
+
+    // populate purchase - shipping address
+
+    // populate purchase - billing address
+
+    //populate purchase - order and orderItems
+
+    // call rest api via the CheckoutService
+
+    // console.log(this.checkoutFormGroup.get('customer').value);
+    // console.log("The email address is " + this.checkoutFormGroup.get('customer').value.email);
+
+    // console.log("The shipping address country is " + this.checkoutFormGroup.get('shippingAddress').value.country.name);
+    // console.log("The shipping address state is " + this.checkoutFormGroup.get('shippingAddress').value.state.name);
   }
 
   handleMonthsAndYears(){
