@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
