@@ -104,7 +104,7 @@ export class CheckoutComponent implements OnInit {
           [Validators.required, Validators.pattern('[0-9]{3}')]),
         expirationMonth: [''],
         expirationYear: ['']
-      }),
+      })
 
     });
 
@@ -243,7 +243,7 @@ export class CheckoutComponent implements OnInit {
     // call rest api via the CheckoutService
     this.checkoutService.placeOrder(purchase).subscribe({
       next: response => {
-        alert(`Your order has been received. \n Order tracking number: ${response.orderTrackingNumber}`)
+        alert(`Your order has been received. \n Order tracking number: ${response.orderTrackingNumber}`);
 
         // reset cart
         this.resetCart();
@@ -299,7 +299,7 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
-  getStates(formGroupName: any){
+  getStates(formGroupName: string){
 
     const formGroup = this.checkoutFormGroup.get(formGroupName);
 
