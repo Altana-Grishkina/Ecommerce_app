@@ -6,4 +6,6 @@ import com.luv2code.ecommerce.entity.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long>{
 
+    Customer findByEmail(String theEmail);
+
 }
