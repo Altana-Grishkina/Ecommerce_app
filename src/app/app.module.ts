@@ -30,6 +30,7 @@ import { OktaAuth } from '@okta/okta-auth-js';
 
 import myAppConfig from './config/my-app-config';
 import { MemberPageComponent } from './component/member-page/member-page.component';
+import { OrderHistoryComponent } from './component/order-history/order-history.component';
 
 const oktaConfig = myAppConfig.oidc;
 
@@ -75,7 +76,8 @@ const routes: Routes = [
     CheckoutComponent,
     LoginComponent,
     LoginStatusComponent,
-    MemberPageComponent
+    MemberPageComponent,
+    OrderHistoryComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
